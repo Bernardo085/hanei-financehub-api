@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: hanei-financehub-api
+
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/hanei_financehub}
+      auto-index-creation: true
+
+server:
+  port: ${PORT:8080}
+  error:
+    include-message: always
+
+hanei:
+  security:
+    jwt:
+      secret: ${JWT_SECRET:CHANGE_ME_IN_ENV_MIN_256_BITS_SECRET_KEY_DEV_ONLY}
+      expiration-ms: ${JWT_EXPIRATION_MS:7200000}
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+springdoc:
+  swagger-ui:
+    path: /docs
+  api-docs:
+    path: /v3/api-docs
