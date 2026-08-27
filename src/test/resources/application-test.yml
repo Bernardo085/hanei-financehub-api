@@ -1,0 +1,9 @@
+spring:
+  data:
+    mongodb:
+      auto-index-creation: true
+
+hanei:
+  security:
+    jwt:
+      secret: test-secret-key-not-for-production-use-only-256-bits-minimum
