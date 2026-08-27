@@ -46,6 +46,17 @@ public class User {
         return new User(null, firstName, lastName, email, null, null, AuthProvider.GOOGLE, Instant.now());
     }
 
+    public static User reconstitute(String id, String firstName, String lastName, String email, String passwordHash,
+                                    String phone, String avatarUrl, AuthProvider authProvider, Onboarding onboarding,
+                                    UserPreferences preferences, Instant createdAt, Instant updatedAt) {
+        User user = new User(id, firstName, lastName, email, passwordHash, phone, authProvider, createdAt);
+        user.avatarUrl = avatarUrl;
+        user.onboarding = onboarding;
+        user.preferences = preferences;
+        user.updatedAt = updatedAt;
+        return user;
+    }
+
     public void completeOnboarding(PrimaryGoal primaryGoal) {
         this.onboarding = this.onboarding.complete(primaryGoal);
         touch();

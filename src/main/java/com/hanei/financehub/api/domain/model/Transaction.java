@@ -63,6 +63,19 @@ public class Transaction {
         return tx;
     }
 
+    public static Transaction reconstitute(String id, String userId, String accountId, String categoryId,
+                                           TransactionType type, Money amount, LocalDate competenceDate, String description,
+                                           TransactionStatus status, boolean recurrent, TransferDetails transferDetails,
+                                           ImportMetadata importMetadata, Instant createdAt, Instant updatedAt) {
+        Transaction tx = new Transaction(id, userId, accountId, categoryId, type, amount, competenceDate,
+                description, recurrent, createdAt);
+        tx.status = status;
+        tx.transferDetails = transferDetails;
+        tx.importMetadata = importMetadata;
+        tx.updatedAt = updatedAt;
+        return tx;
+    }
+
     public void complete() {
         this.status = TransactionStatus.COMPLETED;
         touch();

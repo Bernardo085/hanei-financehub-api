@@ -40,6 +40,16 @@ public class Account {
         return new Account(null, userId, name, type, colorHex, initialBalance, targetGoal, Instant.now());
     }
 
+    public static Account reconstitute(String id, String userId, String name, AccountType type, String colorHex,
+                                       Money initialBalance, Money currentBalance, Money targetGoal, boolean archived,
+                                       Instant createdAt, Instant updatedAt) {
+        Account account = new Account(id, userId, name, type, colorHex, initialBalance, targetGoal, createdAt);
+        account.currentBalance = currentBalance;
+        account.archived = archived;
+        account.updatedAt = updatedAt;
+        return account;
+    }
+
     public void credit(Money amount) {
         requireActive();
         requirePositive(amount);

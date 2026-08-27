@@ -18,6 +18,10 @@ public final class Onboarding {
         return new Onboarding(false, null, null);
     }
 
+    public static Onboarding reconstitute(boolean completed, PrimaryGoal primaryGoal, Instant completedAt) {
+        return new Onboarding(completed, primaryGoal, completedAt);
+    }
+
     public Onboarding complete(PrimaryGoal primaryGoal) {
         return new Onboarding(true, primaryGoal, Instant.now());
     }
